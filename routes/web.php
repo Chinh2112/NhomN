@@ -25,6 +25,3 @@ Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout')
 
 
 
-
-
-
