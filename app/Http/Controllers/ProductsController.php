@@ -25,7 +25,7 @@ class ProductsController extends Controller
         $name = $request->get('search');
         $products = $obj->where('product_name', 'like', "%$name%")->orderBy('product_id', 'DESC')->paginate($per_page);
         $products->appends(['search' => $name]);
-        return view('products', ['products' => $products])
+        return view('products', ['products' => $products]);
     }
     public function index(Request $res)
     {
