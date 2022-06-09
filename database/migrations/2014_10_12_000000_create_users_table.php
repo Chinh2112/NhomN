@@ -23,8 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('type_id')->nullable();
             $table->integer('group_id')->nullable();
             $table->rememberToken();
-            // $table->foreign('type_id')->references('type_id')->on('types');
-            // $table->foreign('group_id')->references('group_id')->on('groups');
+       
             $table->timestamps();
         });
     }

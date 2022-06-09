@@ -4,10 +4,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProtypeController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\SearchProtypeController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\DeleteController;
 use App\Http\Controllers\EditingController;
+use App\Http\Controllers\SearchCategoryController;
 
 
 Route::get('/', function () {
@@ -16,7 +18,7 @@ Route::get('/', function () {
 Route::get('products',[ProductsController::class,'getProducts'])->middleware('per_page');
 Route::get('products',[ProductsController::class,'index']);
 Route::get('protypes',[ProtypeController::class,'getProtype'])->middleware('per_page');
-Route::get('search',[SearchController::class,'search'])->middleware('per_page');
+
 
 Route::get('category',[CategoriesController::class,'getCategory']);
 //Add Category

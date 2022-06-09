@@ -14,12 +14,16 @@ class CategoriesController extends Controller
 {
     //
     public function getCategory(Request $request){
+     
+
         $per_page = $request->input('per_page');
         $obj = new Categories();
         $category = $obj->paginate($per_page);
-        return view('category',['categories' => $category]);
-        // $companies =  DB::table('companies')->simplePaginate(5);
-        // return view('companies',['companies' =>  $companies]);
+        $name = $request->get('search');
+        $category = $obj->where('category_name', 'like', "%$name%")->orderBy('category_id', 'DESC')->paginate($per_page);
+        $category->appends(['search' => $name]);
+        return view('category', ['categories' => $category]);
+
     }
     protected function addCategory(Request $request)
     {
@@ -31,7 +35,7 @@ class CategoriesController extends Controller
                 'category_name' => $name,          
                 'timestamp' => now()            
             ]);
-            $alertAdd = 'Add Product Type Success !!! ';
+            $alertAdd = 'Add Category Success !!! ';
             return redirect('category')->with('alertAdd', $alertAdd);
         } else {
             return redirect('/category');
@@ -45,7 +49,7 @@ class CategoriesController extends Controller
         $category->category_name = $data['edit-name'];
         $category->updated_at = now();
         $category->save();
-        $alertEdit = 'Edit Product Type Success !!! ';
+        $alertEdit = 'Edit Category Success !!! ';
         return redirect('/category')->with('alertEdit',$alertEdit);
     }
 }
